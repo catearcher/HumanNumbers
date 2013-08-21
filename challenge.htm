@@ -10,25 +10,24 @@ m[30] = "dreißig";
 m[h] = "hundert";
 m[t] = "tausend";
 
-function e(v) {
-  return (v+"")[0]==1?m[1]:"";
-}
-
 function g(v) {
   if (m[v]) {
-    r = (v==h?e(v):"") + m[v];
+    r = (v==h?m[1]:"") + m[v];
   } else if (v < h) {
     y = v/z>>0;
-    r = m[v%z] + (v > 20 ? "und" : "") + (v>39?m[y]+"zig":m[y*z]);
-
+    r = m[v%z] + (v > 20 && v%z ? "und" : "") + (v>39?m[y]+"zig":m[y*z]);
   } else if (v < t) {
     r = m[v/h>>0] + m[h] + g(v%h);
-  } else if (v < 1e6) {
+  } else {
     r = g(v/t>>0) + m[t] + g(v%t);
   }
 
-  return r.replace(/(en|s)z/, "z").replace(/nsu/, "nu").replace(/^und/, "");
+  return r.replace(/(en|s)z/, "z");
 }
 
 alert(g(prompt()).replace(/ein$/, "eins"));
+
+// for (i=0; i<100000;i++) {
+//   document.write(i + ": " + g(i).replace(/ein$/, "eins") + "<br>");
+// }
 </script>
