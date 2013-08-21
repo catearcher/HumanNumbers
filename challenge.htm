@@ -1,0 +1,36 @@
+<meta charset='utf-8'>
+
+<script>
+z = 10;
+h = 100;
+t = 1e3;
+m = " ein zwei drei vier fünf sechs sieben acht neun zehn elf zwölf".split(" ");
+m[20] = "zwanzig";
+m[30] = "dreißig";
+m[h] = "hundert";
+m[t] = "tausend";
+
+function e(v) {
+  return (v+"")[0]==1?m[1]:"";
+}
+
+function g(v) {
+  if (m[v]) {
+    r = (v==h?e(v):"") + m[v];
+  } else if (v < h) {
+    r = m[v%z] + (v > 20 ? "und" : "") + m[(v/z>>0) * z];
+  } else if (v < t) {
+    r = m[v/h>>0] + m[h] + g(v%h);
+  } else if (v < 1e6) {
+    r = g(v/t>>0) + m[t] + g(v%t);
+  }
+
+  return r.replace(/(en|s)z/, "z").replace(/nsu/, "nu").replace(/^und/, "");
+}
+
+for (i=4;i<z;i++) {
+  m[i*z] = m[i]+"zig";
+}
+
+alert(g(prompt()).replace(/ein$/, "eins"));
+</script>
