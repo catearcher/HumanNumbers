@@ -18,7 +18,9 @@ function g(v) {
   if (m[v]) {
     r = (v==h?e(v):"") + m[v];
   } else if (v < h) {
-    r = m[v%z] + (v > 20 ? "und" : "") + m[(v/z>>0) * z];
+    y = v/z>>0;
+    r = m[v%z] + (v > 20 ? "und" : "") + (v>39?m[y]+"zig":m[y*z]);
+
   } else if (v < t) {
     r = m[v/h>>0] + m[h] + g(v%h);
   } else if (v < 1e6) {
@@ -26,10 +28,6 @@ function g(v) {
   }
 
   return r.replace(/(en|s)z/, "z").replace(/nsu/, "nu").replace(/^und/, "");
-}
-
-for (i=4;i<z;i++) {
-  m[i*z] = m[i]+"zig";
 }
 
 alert(g(prompt()).replace(/ein$/, "eins"));
