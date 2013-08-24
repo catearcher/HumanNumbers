@@ -15,7 +15,7 @@ function g(v) {
   return (m[v] ? ((v==h?m[1]:"") + m[v]) : (v < h ? (m[v%10] + (v > 20 && v%10 ? "und" : "") + (v>39?m[y]+"zig":m[y*10])) : (v < t ? (m[v/h^0] + m[h] + g(v%h)) : g(v/t^0) + m[t] + g(v%t)))).replace(/(en|s)z/, "z");
 }
 
-alert(g(prompt()).replace(/ein$/, "eins"));
+alert(g(prompt()).replace(/in$/, "ins"));
 
 // for (i=0; i<1000000;i++) {
 //   document.write(i + ": " + g(i).replace(/ein$/, "eins") + "<br>");
