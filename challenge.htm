@@ -3,16 +3,16 @@
 <script>
 h = 100;
 t = 1e3;
-m = " ein zwei drei vier fünf sechs sieben acht neun zehn elf zwölf".split(" ");
+m = "0ein0zwei0drei0vier0fünf0sechs0sieben0acht0neun0zehn0elf0zwölf".split(0);
 m[20] = "zwanzig";
 m[30] = "dreißig";
 m[h] = "hundert";
 m[t] = "tausend";
 
 function g(v) {
-  y = v/10>>0;
+  y = v/10^0;
 
-  return (m[v] ? ((v==h?m[1]:"") + m[v]) : (v < h ? (m[v%10] + (v > 20 && v%10 ? "und" : "") + (v>39?m[y]+"zig":m[y*10])) : (v < t ? (m[v/h>>0] + m[h] + g(v%h)) : g(v/t>>0) + m[t] + g(v%t)))).replace(/(en|s)z/, "z");
+  return (m[v] ? ((v==h?m[1]:"") + m[v]) : (v < h ? (m[v%10] + (v > 20 && v%10 ? "und" : "") + (v>39?m[y]+"zig":m[y*10])) : (v < t ? (m[v/h^0] + m[h] + g(v%h)) : g(v/t^0) + m[t] + g(v%t)))).replace(/(en|s)z/, "z");
 }
 
 alert(g(prompt()).replace(/ein$/, "eins"));
